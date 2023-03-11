@@ -1,0 +1,64 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #3b4d61;
+    letter-spacing: 1px;
+}
+
+.entete {
+    position: relative;
+    height: 250px;
+    background-image: url("../pics/genf.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bouton {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    border: none;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bouton .trait {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #3b4d61;
+}
+
+.bouton .trait:first-child {
+    transform: translateY(-5px);
+}
+
+.bouton .trait:last-child {
+    transform: translateY(5px);
+}
+
+.navbar-nav>.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #3b4d61;
+    margin-right: 15px;
+}
+
+.navbar .nav-link::before {
+    position: absolute;
+    content: '';
+    height: 2px;
+    bottom: 0;
+    width: 0%;
+    background-color: #efd10f;
+}
+
+.navbar .nav-link:hover::before {
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+}
