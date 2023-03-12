@@ -18,8 +18,8 @@ require '../elements/header.php';
                 </address>
             </div>
             <div class="p-2">
-                <div class="d-none d-md-block">
-                    <a href="./pics/sylvain_beggiora_informatique.pdf pdf-link">CV en format PDF</a>
+                <div class="d-none d-md-block pdf">
+                    <a href="./pics/sylvain_beggiora_informatique.pdf" class="pdf-link">CV en format PDF</a>
                 </div>
             </div>
             <div class="p-2">
