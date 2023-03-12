@@ -27,6 +27,8 @@ require '../elements/header.php';
             </div>
         </div>
     </section>
+    <section id="competences" class="bg-body-secondary p-2">
+    </section>
 </main>
 
 
