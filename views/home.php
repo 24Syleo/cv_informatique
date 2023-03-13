@@ -96,9 +96,9 @@ require '../elements/header.php';
         </div>
     </section>
     <section id="diplomes" class="bg-body-secondary p-2">
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around flex-wrap">
             <?php foreach ($diplomes as $dip): ?>
-                <div class="card" style="width: 18rem;">
+                <div class="card ombre mb-2" style="width: 18rem;">
                     <img src="./pics/<?= $dip['path'] ?>" class="card-img-top" alt="image-diplomes">
                     <div class="card-body">
                         <h5 class="card-title"><?= $dip['langages'] ?></h5>
