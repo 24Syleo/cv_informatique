@@ -44,16 +44,12 @@ require '../elements/header.php';
                     </div>
                 </div>
                 <div class="col-6">
-                    <p>
-                        <button class="pdf-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                            Compétences
-                        </button>
-                    </p>
-                    <div style="min-height: 120px;">
-                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                            <div class="card card-body" style="width: 300px;">
-                                This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
-                            </div>
+                    <button class="pdf-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                        Compétences
+                    </button>
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                        <div class="card card-body" style="width: 300px;">
+                            This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
                         </div>
                     </div>
                 </div>
