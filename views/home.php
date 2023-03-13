@@ -2,6 +2,10 @@
 require '../vendor/autoload.php';
 use App\Database;
 
+$pdo = Database::connect();
+
+
+
 require '../elements/header.php';
 ?>
 
@@ -73,7 +77,7 @@ require '../elements/header.php';
         </div>
     </section>
     <section id="experiences" class="bg-body-tertiary p-2">
-    <div class="d-flex flex-column justify-content-center align-items-center">
+         <div class="d-flex flex-column justify-content-center align-items-center">
             <div class="container-timeline">
                 <div class="exp p-2 ombre">
                     <p class="date ms-2">Swisscom Directories – Genève – Aout 2020 - Juin 2022</p>
@@ -89,6 +93,9 @@ require '../elements/header.php';
                 </div>
             </div>  
         </div>
+    </section>
+    <section id="diplomes" class="bg-body-secondary p-2">
+
     </section>
 </main>
 
