@@ -2,15 +2,13 @@
     "name": "sylvain_beggiora/cv_informatique",
     "autoload": {
         "psr-4": {
-            "SylvainBeggiora\\CvInformatique\\": "src/"
+            "App\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "24Syleo",
-            "email": "sylvain.beggiora@outlook.com"
-        }
-    ],
+    "authors": [{
+        "name": "24Syleo",
+        "email": "sylvain.beggiora@outlook.com"
+    }],
     "require": {
         "symfony/var-dumper": "^6.2",
         "altorouter/altorouter": "^2.0"
