@@ -8,7 +8,7 @@ require '../elements/header.php';
     <section id="coordonne" class="bg-body-tertiary p-2">
         <div class="d-flex flex-column flex-md-row justify-content-md-around justify-content-center align-items-center">
             <div class="p-2">
-                <address>
+                <address class="ombre p-2 rounded-4">
                     <h6>Me Contacter</h6>
                     <i class="bi bi-house my-3"> Chemin de la Gravière 31, 1225 Chêne-Bourg</i><br>
                     <i class="bi bi-phone"><a href="tel:+41798745493" class="my-3 lien"> 079 874 54 93</a></i><br>
@@ -26,7 +26,7 @@ require '../elements/header.php';
                 </div>
             </div>
             <div class="p-2">
-                <img src="./pics/sylvain.jpg" alt="" class="img-fluid w-75 img-thumbnail">
+                <img src="./pics/sylvain.jpg" alt="" class="img-fluid w-75 img-thumbnail ombre rounded-4">
             </div>
         </div>
     </section>
@@ -41,7 +41,7 @@ require '../elements/header.php';
                 </div>
                 <div class="collapse" id="langages">
                     <div class="card card-body shadow-md">
-                        HTML CSS PHP MySql Bootstrap
+                        HTML CSS PHP MySql Bootstrap Git GitHub
                     </div>
                 </div>
             </div>
@@ -69,6 +69,24 @@ require '../elements/header.php';
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section id="experiences" class="bg-body-tertiary p-2">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="container-timeline">
+                <div class="exp p-2 ombre">
+                    <p class="date ms-2">Swisscom Directories – Genève – Aout 2020 - Juin 2022</p>
+                    <p class="poste ms-2">Digital Marketing Consultant</p>
+                </div>
+                <div class="exp p-2 ombre">
+                    <p class="date ms-2">Bell Food Group – Genève Décembre 2018 – Avril 2020</p>
+                    <p class="poste ms-2">Vendeur produits carnés</p>
+                </div>
+                <div class="exp p-2 ombre">
+                    <p class="date ms-2">MyProject – Genève Janvier 2016 – Novembre 2018</p>
+                    <p class="poste ms-2">Courtier en assurance</p>
+                </div>
+            </div>  
         </div>
     </section>
 </main>

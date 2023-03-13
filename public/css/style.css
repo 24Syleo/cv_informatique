@@ -6,6 +6,10 @@ body {
     letter-spacing: 1px;
 }
 
+.ombre {
+    box-shadow: 10px 10px 20px #6b7b8c;
+}
+
 
 /* partie header.php */
 
@@ -96,7 +100,7 @@ address .lien:hover {
     position: relative;
     border: solid 1px #3b4d61;
     border-radius: 5px;
-    box-shadow: -5px 5px 0px #6b7b8c;
+    box-shadow: 10px 10px 20px #6b7b8c;
     padding: 10px;
     background-color: transparent;
 }
@@ -133,4 +137,76 @@ address .lien:hover {
 .pdf:hover::before {
     width: 100%;
     transition: all 0.4s ease-in-out;
+}
+
+
+/* expériences */
+
+.container-timeline {
+    position: relative;
+    padding: 10px 10px 10px 50px;
+    /* padding left fort pour de la place pour la timeline*/
+    max-width: 500px;
+    margin: 20px;
+}
+
+
+/* ligne */
+
+.container-timeline::before {
+    position: absolute;
+    content: '';
+    width: 5px;
+    background-color: #f5f5f5;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+}
+
+.exp {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+
+/* triangle */
+
+.exp::before {
+    position: absolute;
+    content: "";
+    border: 10px solid transparent;
+    border-right-color: #f5f5f5;
+    border-left: 0;
+    top: 35%;
+    left: -10px;
+}
+
+
+/* cercle sur la timeline */
+
+.exp::after {
+    content: "";
+    background: #efd10f;
+    border: 3px solid #f5f5f5;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    left: -40px;
+    box-shadow: #6b7b8c 10px 10px 20px;
+}
+
+p.date {
+    color: #efd10f;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+p.poste {
+    color: #3b4d61;
+    font-size: 15px;
+    font-style: italic;
 }
