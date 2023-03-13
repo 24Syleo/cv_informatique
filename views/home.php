@@ -19,7 +19,7 @@ require '../elements/header.php';
             </div>
             <div class="p-2">
                 <div class="d-none d-md-block pdf">
-                    <a href="./pics/sylvain_beggiora_informatique.pdf" class="pdf-link">CV en format PDF</a>
+                    <a href="./pics/sylvain_beggiora_informatique.pdf" class="pdf-link" target="_blank">CV en format PDF</a>
                 </div>
             </div>
             <div class="p-2">
@@ -31,23 +31,22 @@ require '../elements/header.php';
         <div class="container-fluid text-center">
             <div class="row">
                 <div class="col-6">
-                    <p>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                            Toggle width collapse
-                        </button>
-                    </p>
-                    <div style="min-height: 120px;">
-                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                            <div class="card card-body" style="width: 300px;">
-                                This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
-                            </div>
+                    <button class="pdf-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExamplelangages" aria-expanded="false" aria-controls="collapseWidthExample">
+                        Langages informatiques
+                    </button>
+                    <div class="collapse collapse-horizontal" id="collapseWidthExamplelangages">
+                        <div class="card card-body text-center" style="width: 200px;">
+                            HTML / CSS
+                            JAVASCRIPT
+                            PHP
+                            MySql
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <p>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                            Toggle width collapse
+                        <button class="pdf-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            Compétences
                         </button>
                     </p>
                     <div style="min-height: 120px;">
