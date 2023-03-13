@@ -5,7 +5,7 @@ namespace App;
 class Database
 {
     private static $dbHost = "localhost";
-    private static $dbName = "burger_code";
+    private static $dbName = "diplomes";
     private static $dbUser = "root";
     private static $dbUserPassword = "";
 

@@ -3,8 +3,9 @@ require '../vendor/autoload.php';
 use App\Database;
 
 $pdo = Database::connect();
-
-
+$statement = $pdo->query('SELECT * FROM certificat');
+$diplomes = $statement->fetchAll();
+dump($diplomes);
 
 require '../elements/header.php';
 ?>
@@ -39,8 +40,8 @@ require '../elements/header.php';
         <div class="d-flex justify-content-around align-items-center flex-column flex-md-row">
             <div class="p2">
                 <div class="pdf mb-3">
-                    <a class="pdf-link" data-bs-toggle="collapse" href="#langages" role="button"
-                        aria-expanded="false" aria-controls="langages">
+                    <a class="pdf-link" data-bs-toggle="collapse" href="#langages" role="button" aria-expanded="false"
+                        aria-controls="langages">
                         Langages Informatiques
                     </a>
                 </div>
@@ -77,7 +78,7 @@ require '../elements/header.php';
         </div>
     </section>
     <section id="experiences" class="bg-body-tertiary p-2">
-         <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
             <div class="container-timeline">
                 <div class="exp p-2 ombre">
                     <p class="date ms-2">Swisscom Directories – Genève – Aout 2020 - Juin 2022</p>
@@ -91,11 +92,22 @@ require '../elements/header.php';
                     <p class="date ms-2">MyProject – Genève Janvier 2016 – Novembre 2018</p>
                     <p class="poste ms-2">Courtier en assurance</p>
                 </div>
-            </div>  
+            </div>
         </div>
     </section>
     <section id="diplomes" class="bg-body-secondary p-2">
-
+        <div class="d-flex justify-content-around">
+            <?php foreach ($diplomes as $dip): ?>
+                <div class="card" style="width: 18rem;">
+                    <img src="./pics/<?= $dip['path'] ?>" class="card-img-top" alt="image-diplomes">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $dip['langages'] ?></h5>
+                        <p class="card-text"><?= $dip['ecoles'] ?></p>
+                        <p class="card-text"><?= $dip['date'] ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </section>
 </main>
 
