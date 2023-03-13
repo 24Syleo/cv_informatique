@@ -5,7 +5,6 @@ use App\Database;
 $pdo = Database::connect();
 $statement = $pdo->query('SELECT * FROM certificat');
 $diplomes = $statement->fetchAll();
-dump($diplomes);
 
 require '../elements/header.php';
 ?>
