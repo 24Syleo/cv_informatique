@@ -4,10 +4,10 @@ namespace App;
 // Objet pour la connection à une base de donnée
 class Database
 {
-    private static $dbHost = "localhost";
+    private static $dbHost = "db";
     private static $dbName = "diplomes";
     private static $dbUser = "root";
-    private static $dbUserPassword = "";
+    private static $dbUserPassword = "root";
 
     private static $connection = null;
 
