@@ -1,7 +1,7 @@
 <?php
 require_once("./config.php");
 
-class Beers
+class Diplomes
 {
     private $connection;
 
@@ -20,193 +20,39 @@ class Beers
     }
 
     /**
-     * searchBeers
+     * searchDiplomes
      *
-     * @return tableau de bière
+     * @return un tableau de diplomes
      */
-    public function searchBeers($limit, $offset)
+    public function searchDiplomes($limit, $offset)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM beers as b
-                                            INNER JOIN beer_ingredient ON b.id = beer_ingredient.beer_id
-                                            INNER JOIN ingredients as i ON beer_ingredient.ingredient_id = i.id
+            $stmt = $this->connection->prepare("SELECT * FROM certificat
                                             LIMIT $limit
                                             OFFSET $offset");
             $stmt->execute();
-            $beer = $stmt->fetchAll(PDO::FETCH_OBJ);
-            if ($beer === false) {
-                $beer = ["message" => "l'id n'existe pas."];
-            }
-            return $beer;
+            $diplomes = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $diplomes;
         } catch (Exception $e) {
             throw $e;
         };
     }
 
     /**
-     * readBeer
+     * readDiplome
      *
      * @param  mixed $id
-     * @return une biere
+     * @return un diplome
      */
-    public function readBeer($id)
+    public function readDiplome($id)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM beers as b
-                                          INNER JOIN beer_ingredient ON b.id = beer_ingredient.beer_id
-                                          INNER JOIN ingredients as i ON beer_ingredient.ingredient_id = i.id
-                                          WHERE b.id = :id");
-            $stmt->execute(['id' => $id]);
-            $beer = $stmt->fetchAll(PDO::FETCH_OBJ);
-            return $beer;
+            $stmt = $this->connection->prepare("SELECT * FROM certificat WHERE id = :id");
+            $stmt->execute(array(':id' => $id));
+            $diplome = $stmt->fetch(PDO::FETCH_OBJ);
+            return $diplome;
         } catch (Exception $e) {
             throw $e;
         };
-    }
-
-    /**
-     * readBeerName
-     *
-     * @param  mixed $queryName (beerName)
-     * @return une biere
-     */
-    public function readBeerName($queryName)
-    {
-        try {
-
-            $queryNameSQL = '%' . $queryName . '%';
-            $stmt = $this->connection->prepare('SELECT * FROM beers as b
-                                          INNER JOIN beer_ingredient ON b.id = beer_ingredient.beer_id
-                                          INNER JOIN ingredients as i ON beer_ingredient.ingredient_id = i.id 
-                                          WHERE b.name 
-                                          LIKE :queryName');
-            $stmt->bindParam(':queryName', $queryNameSQL);
-            $stmt->execute();
-
-            $beers = $stmt->fetchAll(PDO::FETCH_OBJ);
-            if (empty($beers)) {
-                $beers = ["message" => "La bière, $queryName, n'existe pas."];
-            }
-            return $beers;
-        } catch (Exception $e) {
-            throw $e;
-        };
-    }
-
-    public function readBeerType($queryType)
-    {
-        try {
-
-            $queryNameSQL = '%' . $queryType . '%';
-            $stmt = $this->connection->prepare('SELECT * FROM beers as b
-                                            INNER JOIN beer_ingredient ON b.id = beer_ingredient.beer_id
-                                            INNER JOIN ingredients as i ON beer_ingredient.ingredient_id = i.id 
-                                            WHERE i.type 
-                                            LIKE :queryType');
-            $stmt->bindParam(':queryType', $queryNameSQL);
-            $stmt->execute();
-
-            $beers = $stmt->fetchAll(PDO::FETCH_OBJ);
-            if (empty($beers)) {
-                $beers = ["message" => "Aucunne bière contient du, $queryType"];
-            }
-            return $beers;
-        } catch (Exception $e) {
-            throw $e;
-        };
-    }
-
-
-    /**
-     * createBeer
-     *
-     * @param  mixed $array tableau recuperer du controller
-     * retourne l'objet creer
-     */
-    public function createBeer($array)
-    {
-        try {
-            var_dump($array);
-            //recuperer chaque valeur
-            $arrayFood = [];
-            //recuperer vla food_pairing
-            foreach ($array["food_pairing"] as $t) {
-                array_push($arrayFood, $t);
-            }
-            //implode — Rassemble les éléments d'un tableau en une chaîne
-            //Les cles du tableau sont les noms de colonnes
-            $keys = implode(", ", array_keys($array));
-            $sql = "INSERT INTO beers ($keys,food_pairing2,food_pairing3) VALUES (?,?,?,?,?,?,?,?,?,?)";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute(array($array["name"], $array["tagline"], $array["first_brewed"], $array["image_url"], $array["contributed_by"], $array["brewers_tips"], $array["description"], $arrayFood[0], $arrayFood[1], $arrayFood[2]));
-            $id = $this->connection->lastInsertId();
-            return $id;
-        } catch (Exception $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * addIngredient
-     *
-     * @param  mixed $beer_id
-     * @param  mixed $ingredient_id
-     * @return le tableau d'association
-     */
-    public function addIngredient($beer_id, $ingredient_id)
-    {
-        try {
-
-            $sql = "INSERT INTO beer_ingredient (beer_id,ingredient_id) VALUES (?,?)";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute(array($beer_id, $ingredient_id));
-            return $this->readBeer($beer_id);
-        } catch (Exception $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * updateBeer
-     *
-     * @param  mixed $array
-     * @param  mixed $id
-     * @return array beer
-     */
-    public function updateBeer($array, $id)
-    {
-        try {
-            //recuperer chaque valeur
-            $tab = [];
-            foreach ($array as $ar) {
-                array_push($tab, $ar);
-            }
-
-            //recuperer vla food_pairing
-            $tabFood = [];
-            foreach ($tab[5] as $t) {
-                array_push($tabFood, $t);
-            }
-
-            $sql = "UPDATE beers SET name=?,tagline=?,first_brewed=?,description=?,image_url=?,brewers_tips=?,contributed_by=?,food_pairing=?,food_pairing2=?,food_pairing3=? WHERE id=?";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute(array($tab[0], $tab[1], $tab[2], $tab[3], $tab[4], $tab[6], $tab[7], $tabFood[0], $tabFood[1], $tabFood[2], $id));
-            return $this->readBeer($id);
-        } catch (Exception $e) {
-            throw $e;
-        }
-    }
-
-    public function deleteBeer($id)
-    {
-        try {
-            $beer = $this->readBeer($id);
-            $sql = "DELETE FROM beers WHERE id=?";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute(array($id));
-            return ["message" => "La bière " . $beer[0]->name . " a été correctement supprimé"];
-        } catch (Exception $e) {
-            throw $e;
-        }
     }
 }
