@@ -7,13 +7,23 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 // Récupération des Models
 require_once __DIR__ . "/model/Diplomes.php";
+require_once __DIR__ . "/model/Competences.php";
 
 // Récupération des constantes d'accès pour la base de données
 require_once "./config.php";
 
-$diplome = manageDiplomes();
+//récupère le chemin appelé
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-echo (json_encode($diplome));
+
+//Choisir le controller a appelé en fonction du chemin
+if (preg_match('#^/cv_informatique/diplomes#', $uri)) {
+    $res = manageDiplomes();
+} else {
+    $res = manageCompetences();
+}
+
+echo (json_encode($res));
 
 
 function manageDiplomes()
@@ -56,4 +66,42 @@ function manageDiplomes()
     }
 }
 
+function manageCompetences()
+{
 
+    //initialiser un objet competences
+    $comp = new Competences();
+
+    //method pour la base de données
+    $method =  $_SERVER['REQUEST_METHOD'];
+
+    //RéCUPéRER L'ID dans l'url
+    parse_str($_SERVER['QUERY_STRING'], $query);
+    $id = isset($query['id']) ? $query['id'] : '';
+
+    //récupérer les pages de diplomes
+    $queryPerPage = isset($query['per_page']) ? $query['per_page'] : '';
+    $queryPage = isset($query['page']) ? $query['page'] : '';
+
+    switch ($method) {
+        case 'GET':
+            if ($id) {
+                $competence = $comp->readCompetence($id);
+                return $competence;
+            } else {
+                if ($queryPerPage) {
+                    $queryLimit = $queryPerPage;
+                    if ($queryPage) {
+                        $queryOffset = $queryPage;
+                    } else {
+                        $queryOffset = 0;
+                    }
+                } else {
+                    $queryLimit = 50;
+                    $queryOffset = 0;
+                }
+                $competences = $comp->searchCompetences($queryLimit, $queryOffset);
+                return $competences;
+            }
+    }
+}
