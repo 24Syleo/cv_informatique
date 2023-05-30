@@ -27,7 +27,7 @@ class Soft
     public function searchSofts($limit, $offset)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM soft-skills
+            $stmt = $this->connection->prepare("SELECT * FROM soft
                                             LIMIT $limit
                                             OFFSET $offset");
             $stmt->execute();
@@ -47,7 +47,7 @@ class Soft
     public function readSoft($id)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM soft-skills WHERE id = :id");
+            $stmt = $this->connection->prepare("SELECT * FROM soft WHERE id = :id");
             $stmt->execute(array(':id' => $id));
             $competence = $stmt->fetch(PDO::FETCH_OBJ);
             return $competence;
