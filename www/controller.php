@@ -18,9 +18,9 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 
 //Choisir le controller a appelé en fonction du chemin
-if (preg_match('#^/cv_informatique/diplomes#', $uri)) {
+if (preg_match('#^/diplomes#', $uri)) {
     $res = manageDiplomes();
-} elseif(preg_match('#^/cv_informatique/competences#', $uri)) {
+} elseif(preg_match('#^/competences#', $uri)) {
     $res = manageCompetences();
 } else{
     $res = manageSofts();
